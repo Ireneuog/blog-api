@@ -1,25 +1,25 @@
-# Intelligent CI/CD Pipeline with AI-Augmented Quality Gates
+# Pipeline Inteligente de CI/CD com Validações de Qualidade baseadas em IA
 
-## Team
+## Equipa
 - Sofia Ortiz (Product Owner – Sprint 1)
 - João Pereira
-- Irineu Hiva
+- Ireneu Hiva
 
-## Objective
-The goal of this project is to design and implement an intelligent CI/CD pipeline that automates the main stages of the software delivery process—build, test, and deploy—while integrating AI-driven quality gates for code quality, testing, and security validation.
+## Objetivo
+O objetivo deste projeto é conceber e implementar um pipeline inteligente de Integração Contínua e Entrega Contínua (CI/CD), que automatize as principais fases do processo de desenvolvimento de software — compilação, testes e implementação — integrando mecanismos de validação de qualidade suportados por Inteligência Artificial (IA) para controlo de qualidade, testes e verificação de segurança.
 
-## Planned Technologies
-- Node.js + Express
-- Docker + Docker Compose
-- GitHub Actions (for CI/CD automation)
-- CodeQL (Static Application Security Testing – SAST)
-- OWASP ZAP (Dynamic Application Security Testing – DAST)
-- AI-based tool (e.g., ChatGPT API, CodiumAI, or SonarQube AI)
-- Jira (Agile and Scrum project management)
+## Tecnologias Planeadas
+- Node.js + Express  
+- Docker + Docker Compose  
+- GitHub Actions (para automação CI/CD)  
+- CodeQL (Análise Estática de Segurança – SAST)  
+- OWASP ZAP (Análise Dinâmica de Segurança – DAST)  
+- Ferramenta baseada em IA (por exemplo, ChatGPT API, CodiumAI ou SonarQube AI)  
+- Jira (para gestão Ágil e metodologia Scrum)
 
-## Setup Instructions
+## Instruções de Configuração
 
-### Local Development
+### Execução Local
 ```bash
 npm install
 npm run dev
