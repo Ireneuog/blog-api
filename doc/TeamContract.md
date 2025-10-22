@@ -11,7 +11,6 @@ Projeto: API de Blog com Autenticação e Pipeline CI/CD Inteligente
 Sprint atual: Sprint 1 
 
  
-
 Objetivos 
 
 Organizar a equipa e definir responsabilidades.  
@@ -21,19 +20,15 @@ Garantir comunicação eficaz e cumprimento das cerimónias SCRUM.
 Aplicar práticas de X-Ops (planeamento, documentação, qualidade, CI/CD). 
 
  
-
 Papéis e Responsabilidades 
 
-Product Owner (PO): roda em cada sprint; define prioridades e aprova entregas.  
+Product Owner (PO): roda em cada sprint; define prioridades e aprova entregas(Sofia Orrtiz).  
 
-Scrum Master: garante cumprimento das práticas SCRUM e comunicação.  
+Scrum Master: garante cumprimento das práticas SCRUM e comunicação(João Pereira).  
 
-Development Team: Sofia Ortiz, Joao Pereira e Ireneu Hiva 
-
- 
+Development Team: Sofia Ortiz, João Pereira e Ireneu Hiva 
 
  
-
 Organização do Trabalho 
 
 Daily Scrum: pequenas reuniões para progresso e impedimentos.  
@@ -44,7 +39,6 @@ Sprint Review: demonstração das entregas.
 
 Sprint Retrospective: lições aprendidas e melhorias. 
 
- 
 
 Ferramentas e Comunicação 
 
@@ -52,7 +46,8 @@ GitHub: código e documentos (Ireneuog/blog-api).
 
 Jira: gestão de tarefas e evidências.  
 
-Discord/WhatsApp: comunicação diária.  
+Discord/WhatsApp: comunicação diária. 
+
 
 Regras de Equipa 
 
