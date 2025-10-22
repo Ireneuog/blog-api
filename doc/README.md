@@ -1,8 +1,8 @@
 # Pipeline Inteligente de CI/CD com Validações de Qualidade baseadas em IA
 
 ## Equipa
-- Sofia Ortiz (Product Owner – Sprint 1)
-- João Pereira
+- Sofia Ortiz (Product Owner)
+- João Pereira (Scrum Master)
 - Ireneu Hiva
 
 ## Objetivo
