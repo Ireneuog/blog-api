@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Observabilidade (Sprint 3)
+// Observabilidade 
 app.use(requestLogger);
 
 // Health check (Sprint 3)
@@ -16,20 +16,15 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// Rotas de comentários (Sprint 3)
 // POST /comments/:postId → cria comentário
 // GET  /comments/:postId → lista comentários
 app.use("/comments", commentRoutes);
 
-/* -----------------------------------------------------------
-   EDITAR POST (Sprint 3)
------------------------------------------------------------ */
 app.put("/posts/:id", async (req, res) => {
   try {
     const postId = Number(req.params.id);
     const { title, content } = req.body;
 
-    // Para já, Sprint 3 simples: userId fixo
     const userId = 1;
 
     const post = await prisma.post.findUnique({ where: { id: postId } });
@@ -54,14 +49,10 @@ app.put("/posts/:id", async (req, res) => {
   }
 });
 
-/* -----------------------------------------------------------
-   APAGAR POST (Sprint 3)
------------------------------------------------------------ */
 app.delete("/posts/:id", async (req, res) => {
   try {
     const postId = Number(req.params.id);
 
-    // Para já, Sprint 3 simples: userId fixo
     const userId = 1;
 
     const post = await prisma.post.findUnique({ where: { id: postId } });
