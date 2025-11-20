@@ -8,6 +8,10 @@ export async function updatePost(req: Request, res: Response) {
 
     const userId = 1; // Simulação Sprint 3
 
+    if (!title || !content) {
+      return res.status(400).json({ error: "Título e conteúdo são obrigatórios" });
+    }
+
     const post = await prisma.post.findUnique({ where: { id: postId } });
     if (!post) {
       return res.status(404).json({ error: "Post não encontrado" });
@@ -24,9 +28,9 @@ export async function updatePost(req: Request, res: Response) {
       data: { title, content },
     });
 
-    res.json(updated);
+    return res.json(updated);
   } catch (err: any) {
-    res.status(500).json({
+    return res.status(500).json({
       error: err.message || "Erro ao editar post",
     });
   }
@@ -35,7 +39,6 @@ export async function updatePost(req: Request, res: Response) {
 export async function deletePost(req: Request, res: Response) {
   try {
     const postId = Number(req.params.id);
-
     const userId = 1;
 
     const post = await prisma.post.findUnique({ where: { id: postId } });
