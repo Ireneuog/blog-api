@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-// Monitorizaç
+// Monitorização
 app.use(requestLogger);
 
 // Health check 
