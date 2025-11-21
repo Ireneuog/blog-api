@@ -1,5 +1,5 @@
-import request from "supertest";
-import app from "../../src/app";
+const request = require("supertest");
+const app = require("../../src/app").default;
 
 describe("Health Check", () => {
   it("deve devolver status ok", async () => {
