@@ -1,10 +1,11 @@
-const request = require("supertest");
-const app = require("../server");
+import request from "supertest";
+import app from "../../src/app";
 
 describe("Health Check", () => {
   it("deve devolver status ok", async () => {
-    const res = await request(app).get("/health");
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toHaveProperty("status", "ok");
+    const response = await request(app).get("/health");
+
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ status: "ok" });
   });
 });
