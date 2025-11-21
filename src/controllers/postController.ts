@@ -6,7 +6,7 @@ export async function updatePost(req: Request, res: Response) {
     const postId = Number(req.params.id);
     const { title, content } = req.body;
 
-    const userId = 1; // Simulação Sprint 3
+    const userId = 1; 
 
     if (!title || !content) {
       return res.status(400).json({ error: "Título e conteúdo são obrigatórios" });
