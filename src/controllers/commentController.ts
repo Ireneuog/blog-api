@@ -1,41 +1,42 @@
-import { Request, Response } from "express";
+import { Response } from "express";
+import { AuthenticatedRequest } from "../types/request";
 import * as commentService from "../services/commentService";
+import { ValidationError, UnauthorizedError } from "../types/errors";
 
-export async function createComment(req: Request, res: Response) {
-  try {
-    const { postId } = req.params;
-    const { content } = req.body;
+/**
+ * Create a new comment on a post
+ * Route: POST /comments/:postId
+ * Requires authentication
+ */
+export async function createComment(req: AuthenticatedRequest, res: Response) {
+  const { postId } = req.params;
+  const { content } = req.body;
+  const userId = req.user?.userId;
 
-    if (!content) {
-      return res.status(400).json({ error: "O comentário não pode estar vazio." });
-    }
-
-    const userId = (req as any).user?.userId;
-
-    if (!userId) {
-      return res.status(401).json({ error: "Utilizador não autenticado." });
-    }
-
-    const comment = await commentService.createComment(
-      Number(postId),
-      userId,
-      content
-    );
-
-    return res.status(201).json(comment);
-  } catch (err: any) {
-    return res.status(err.status || 500).json({ error: err.message });
+  if (!userId) {
+    throw new UnauthorizedError("Utilizador não autenticado");
   }
+
+  if (!content) {
+    throw new ValidationError("O comentário não pode estar vazio.");
+  }
+
+  const comment = await commentService.createComment(
+    Number(postId),
+    userId,
+    content
+  );
+
+  res.status(201).json(comment);
 }
 
-export async function listComments(req: Request, res: Response) {
-  try {
-    const { postId } = req.params;
+/**
+ * List all comments for a post
+ * Route: GET /comments/:postId
+ */
+export async function listComments(req: AuthenticatedRequest, res: Response) {
+  const { postId } = req.params;
 
-    const comments = await commentService.listComments(Number(postId));
-    return res.json(comments);
-  } catch (err: any) {
-    return res.status(err.status || 500).json({ error: err.message });
-  }
+  const comments = await commentService.listComments(Number(postId));
+  res.json(comments);
 }
-

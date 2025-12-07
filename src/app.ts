@@ -2,23 +2,25 @@ import express from "express";
 import commentRoutes from "./routes/commentRoutes";
 import postRoutes from "./routes/postRoutes";
 import { requestLogger } from "./middlewares/requestLogger";
+import { errorHandler } from "./middlewares/errorHandler";
 
 const app = express();
 
 app.use(express.json());
 
-// Monitorização
+// Request logging
 app.use(requestLogger);
 
-// Health check 
+// Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// Rotas de comentários
+// Routes
 app.use("/comments", commentRoutes);
-
-// Rotas de posts (editar/apagar)
 app.use("/posts", postRoutes);
+
+// Centralized error handling (must be last)
+app.use(errorHandler);
 
 export default app;

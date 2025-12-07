@@ -1,28 +1,42 @@
-import { prisma } from "../prisma/client";
+import { prisma } from "../prisma";
+import {
+  UnauthorizedError,
+  ValidationError,
+  NotFoundError,
+} from "../types/errors";
 
+/**
+ * Create a new comment on a post
+ * @param postId - The ID of the post to comment on
+ * @param userId - The ID of the authenticated user
+ * @param content - The comment content
+ * @throws UnauthorizedError if userId is not provided
+ * @throws ValidationError if content is empty
+ * @throws NotFoundError if post doesn't exist
+ */
 export async function createComment(
   postId: number,
   userId: number,
   content: string
 ) {
   if (!userId) {
-    throw { status: 401, message: "Utilizador não autenticado" };
+    throw new UnauthorizedError("Utilizador não autenticado");
   }
 
   if (!content || content.trim() === "") {
-    throw { status: 400, message: "O comentário não pode estar vazio" };
+    throw new ValidationError("O comentário não pode estar vazio");
   }
 
-  // Verificar se o post existe
+  // Check if post exists
   const post = await prisma.post.findUnique({
     where: { id: postId },
   });
 
   if (!post) {
-    throw { status: 404, message: "Post não encontrado" };
+    throw new NotFoundError("Post não encontrado");
   }
 
-  // Criar o comentário
+  // Create the comment
   const comment = await prisma.comment.create({
     data: {
       content,
@@ -34,17 +48,22 @@ export async function createComment(
   return comment;
 }
 
+/**
+ * List all comments for a post, ordered by creation date (newest first)
+ * @param postId - The ID of the post
+ * @throws NotFoundError if post doesn't exist
+ */
 export async function listComments(postId: number) {
-  // Verificar se o post existe antes de listar
+  // Check if post exists before listing
   const post = await prisma.post.findUnique({
     where: { id: postId },
   });
 
   if (!post) {
-    throw { status: 404, message: "Post não encontrado" };
+    throw new NotFoundError("Post não encontrado");
   }
 
-  // Listar comentários do mais recente para o mais antigo
+  // List comments from newest to oldest
   return prisma.comment.findMany({
     where: { postId },
     orderBy: { createdAt: "desc" },
