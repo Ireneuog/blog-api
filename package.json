@@ -9,6 +9,8 @@
     "test": "vitest --run",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc --noEmit",
     "generate:ai-tests": "node ai-tests/generateTests.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
